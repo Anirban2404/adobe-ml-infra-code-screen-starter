@@ -13,4 +13,4 @@ COPY requirements.txt /usr/local/app/main/
 COPY *.py /usr/local/app/main/
 
 
-CMD ["flask", "run"]
+CMD ["flask", "run", "-p", "8080"]
