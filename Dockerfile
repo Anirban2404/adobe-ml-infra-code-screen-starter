@@ -9,6 +9,8 @@ ENV FLASK_ENV=development
 COPY requirements.txt /usr/local/app/main/
 RUN pip install -r /usr/local/app/main/requirements.txt
 
+COPY requirements.txt /usr/local/app/main/
 COPY *.py /usr/local/app/main/
+
 
 CMD ["flask", "run"]

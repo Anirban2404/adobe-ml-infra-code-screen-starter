@@ -27,7 +27,7 @@ def create_game():
     store.save_game(game)
     return jsonify(id=game.id, turnCount=game.turnCount, status=game.status.value), 201
 
-
+'''
 @app.route("/game/<id>", methods=["GET"])
 def get_game(id: str):
     """
@@ -37,7 +37,22 @@ def get_game(id: str):
         return "Not found (game does not exist)", 404
     game = store.load_game(id)
     return jsonify(id=game.id, turnCount=game.turnCount, status=game.status.value)
+'''
 
+@app.route("/game/<id>", methods=["GET"])
+def get_game(id: str):
+    """
+    GET /game/{id}
+    """
+    if not store.is_game_exist(id):
+        return "Not found (game does not exist)", 404
+    game = store.load_game(id)
+    _board = []
+    for i in range(9):
+        _board.append(game.board[i].name)
+    print(_board)
+    return jsonify(id=game.id, turnCount=game.turnCount, 
+                   status=game.status.value, board = list(_board))
 
 @app.route("/game/<id>/<int:board_position>", methods=["GET"])
 def get_game_board_position(id: str, board_position: int):
@@ -81,3 +96,11 @@ def get_health():
     GET /health
     """
     return jsonify(uptime=int(time.time()) - start_time)
+
+@app.route("/game/players", methods=["GET"])
+def get_players():
+    """
+    GET /players
+    """
+    players = store.get_player_ids()
+    return jsonify(players = list(players))
