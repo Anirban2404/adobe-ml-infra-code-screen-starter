@@ -12,5 +12,5 @@ RUN pip install -r /usr/local/app/main/requirements.txt
 COPY requirements.txt /usr/local/app/main/
 COPY *.py /usr/local/app/main/
 
-
+# Run flask on port 8080
 CMD ["flask", "run", "-p", "8080"]
