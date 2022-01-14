@@ -22,7 +22,7 @@ The game API service in the submission needs to have two or more replicas. The b
 
 ```
 docker compose up -d --scale game=<<number of replicas>>
-e.g.  docker compose up -d --scale game=2
+e.g.  docker compose up -d --scale game=3
 ```
 
 When a replica is up, the game system can accept API requests for any active or complete game and should be able to create new games. If one replica goes down, no state is lost. 
