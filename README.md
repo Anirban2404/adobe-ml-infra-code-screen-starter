@@ -16,6 +16,7 @@ This code is licensed under the MIT open source license. See
 Tic-Tac-Toe is an exceedingly popular game, and the tictactoe game system should be designed for high availability and scalability. 
 
 
+
 ### High Availability and Scalability Implementation:
 The game API service in the submission needs to have two or more replicas. The below command will start the docker containers with a selected number of replicas.
 
@@ -35,3 +36,7 @@ Game in the local containers is accessible via port _8080_ (see dockerfile). How
 
 
 **nginx.conf** file is responsible for forwarding the request from port _4000_ to _game:8080_ ( _see ```proxy_pass http://game:8080;``` at line 9_). The port _4000_ is forwarded to port _5000_ of the docker container, and the tictactoe application can be accessed at `http://localhost:5000/...`
+
+The **architecture** is shown below -
+
+![alt text](https://github.com/Anirban2404/adobe-ml-infra-code-screen-starter/blob/development/tictactoe.drawio.png)
